@@ -7,7 +7,6 @@ import br.edu.up.app.data.ProdutoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -37,10 +36,10 @@ class ProdutoViewModel
     }
 
     fun salvar() = viewModelScope.launch {
-        repository.salvar(produto)
+        repository.salvarProduto(produto)
     }
 
     fun excluir(produto: Produto) = viewModelScope.launch {
-        repository.excluir(produto)
+        repository.excluirProduto(produto)
     }
 }

@@ -31,21 +31,50 @@ class AppBase : Application() {
         return firestore.collection("produtos")
     }
 
-    @Provides
-    fun provideProdutoRepositoryFirebase(produtosRef: CollectionReference)
-             : ProdutoRepositoryFirebase{
-        return ProdutoRepositoryFirebase(produtosRef)
-    }
+//    @Provides
+//    fun provideProdutoRepositoryFirebase(produtosRef: CollectionReference)
+//             : ProdutoRepositoryFirebase{
+//        return ProdutoRepositoryFirebase(produtosRef)
+//    }
 
     @Provides
-    fun provideProdutoRepositorySqlite(produtoDAO: ProdutoDAO)
+    fun provideProdutoRepositorySqlite(produtoDAO: ProdutoDAO, clienteDAO: ClienteDAO)
              : ProdutoRepository {
-        return ProdutoRepositorySqlite(produtoDAO)
+            return ProdutoRepositorySqlite(produtoDAO, clienteDAO)
+
     }
 
     @Provides
     fun provideProdutoDAO(bancoSQLite: BancoSQLite): ProdutoDAO {
         return bancoSQLite.produtoDao()
+    }
+
+    @Provides
+    fun provideClientesRef() : CollectionReference {
+        val firestore = Firebase.firestore
+        val settings = firestoreSettings {
+            setLocalCacheSettings(memoryCacheSettings {  })
+        }
+        firestore.firestoreSettings = settings
+        return firestore.collection("clientes")
+    }
+
+    @Provides
+    fun provideClienteRepositoryFirebase(clientesRef: CollectionReference)
+            : ClientesRepositoryFirebase{
+        return ClientesRepositoryFirebase(clientesRef)
+    }
+
+
+//    @Provides
+//    fun provideClienteRepositorySqlite(clienteDAO: ClienteDAO)
+//            : ClienteRepository {
+//        return provideClienteRepositorySqlite(clienteDAO)
+//    }
+
+    @Provides
+    fun provideClienteDAO(bancoSQLite: BancoSQLite): ClienteDAO {
+        return bancoSQLite.clienteDao()
     }
 
     @Provides

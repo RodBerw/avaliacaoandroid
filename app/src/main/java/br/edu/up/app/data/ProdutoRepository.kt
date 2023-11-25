@@ -1,17 +1,17 @@
 package br.edu.up.app.data
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 interface ProdutoRepository {
 
     val produtos: Flow<List<Produto>>
-    suspend fun salvar(produto: Produto)
-    suspend fun excluir(produto: Produto)
-    suspend fun excluirTodos()
+    val clientes: Flow<List<Cliente>>
+    suspend fun salvarProduto(produto: Produto)
+    suspend fun excluirProduto(produto: Produto)
+    suspend fun excluirTodosProduto()
+
+    suspend fun salvarCliente(cliente: Cliente)
+    suspend fun excluirCliente(cliente: Cliente)
+    suspend fun excluirTodosCliente()
 
 }

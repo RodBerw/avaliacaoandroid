@@ -17,9 +17,13 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="br.edu.up.app.ui.gallery.GalleryFragment"
+        android:name="br.edu.up.app.ui.gallery.ClientesFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_gallery" >
+        <action
+            android:id="@+id/action_nav_gallery_to_clienteFragment"
+            app:destination="@id/clienteFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_slideshow"
@@ -31,4 +35,8 @@
         android:name="br.edu.up.app.ui.produto.ProdutoFragment"
         android:label="Cadastro de produtos"
         tools:layout="@layout/fragment_produto" />
+    <fragment
+        android:id="@+id/clienteFragment"
+        android:name="br.edu.up.app.ui.gallery.ClienteFragment"
+        android:label="Cadastro de clientes" />
 </navigation>

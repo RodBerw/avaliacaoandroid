@@ -40,7 +40,12 @@ class Fotos{
                 "bebida2.jpg" to R.drawable.bebida2,
                 "bebida3.jpg" to R.drawable.bebida3,
                 "bebida4.jpg" to R.drawable.bebida4,
-                "bebida5.jpg" to R.drawable.bebida5
+                "bebida5.jpg" to R.drawable.bebida5,
+                "carlos.jpg" to R.drawable.carlos,
+                "julia.jpg" to R.drawable.julia,
+                "marta.jpg" to R.drawable.marta,
+                "pedro.jpg" to R.drawable.pedro,
+                "sabrine.jpg" to R.drawable.sabrine
             )
             return mapOfFotos[key] ?: R.drawable.semfoto
         }

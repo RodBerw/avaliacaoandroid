@@ -8,22 +8,40 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ProdutoRepositorySqlite
-    @Inject constructor(val produtoDAO: ProdutoDAO) : ProdutoRepository {
+    @Inject constructor(val produtoDAO: ProdutoDAO, val clienteDAO: ClienteDAO) : ProdutoRepository {
 
     override val produtos: Flow<List<Produto>> get() = produtoDAO.listar()
-    override suspend fun salvar(produto: Produto) {
+    override val clientes: Flow<List<Cliente>>
+        get() = clienteDAO.listar()
+
+    override suspend fun salvarProduto(produto: Produto) {
         if (produto.id == 0){
             produtoDAO.inserir(produto)
         } else {
             produtoDAO.atualizar(produto)
         }
     }
-    override suspend fun excluir(produto: Produto){
+    override suspend fun excluirProduto(produto: Produto){
         produtoDAO.excluir(produto)
     }
 
-    override suspend fun excluirTodos(){
+    override suspend fun excluirTodosProduto(){
         produtoDAO.excluirTodos()
+    }
+
+    override suspend fun salvarCliente(cliente: Cliente) {
+        if (cliente.id == 0){
+            clienteDAO.inserir(cliente)
+        } else {
+            clienteDAO.atualizar(cliente)
+        }
+    }
+    override suspend fun excluirCliente(cliente: Cliente){
+        clienteDAO.excluir(cliente)
+    }
+
+    override suspend fun excluirTodosCliente(){
+        clienteDAO.excluirTodos()
     }
 
     init {
